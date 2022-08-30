@@ -1,4 +1,4 @@
-export const host = () => 'http://localhost:3030';
+export const host = () => 'https://todyaroslav.herokuapp.com/';
 
 export const signIn = () => `${host()}/auth/signin`;
 export const signOut = () => `${host()}/auth/signout`;
