@@ -28,8 +28,11 @@ export const checkAuth = () => async (dispatch) => {
     const response = await fetch(endPoints.checkAuth(), {
       credentials: 'include',
     });
+    const data = await response.json();
+    if ('error' in data) {
+      //можно обработать ошибку авторизации 
+    }
     if (response.ok) {
-      const data = await response.json();
       dispatch(addUserAC(data));
     }
   } catch (error) {

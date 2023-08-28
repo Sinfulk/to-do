@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sortTasks } from '../../redux/actions/tasksAction';
-import styles from './Buttons.module.scss';
+import  './Buttons.scss';
 
 function Buttons() {
   const dispatch = useDispatch();
@@ -27,8 +27,8 @@ function Buttons() {
   }
 
   return (
-    <div className={styles.buttons}>
-      <div className={styles.title}> Sort: </div>
+    <div className="buttons">
+      <title className="title"> Sort: </title>
       <button type="button" onClick={() => sortHandle('User.name')}>Name</button>
       <button type="button" onClick={() => sortHandle('User.email')}>Email</button>
       <button type="button" onClick={() => sortHandle('status')}>Status</button>

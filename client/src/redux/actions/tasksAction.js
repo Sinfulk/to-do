@@ -17,23 +17,30 @@ export const allTasksFetch = () => async (dispatch) => {
 };
 
 export const taskFetch = (payload) => async (dispatch) => {
-  const response = await fetch(endPoints.newTask(), {
-    method: 'post',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    credentials: 'include',
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(endPoints.newTask(), {
+      method: 'post',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(payload),
+    });
 
-  const { allTasks, error } = await response.json();
+    const { allTasks, error } = await response.json();
 
-  if (response.ok) {
-    dispatch(tasksAC(allTasks));
-    dispatch(setMasageAC('You have created a new task'));
-    setTimeout(() => dispatch(deleteMasageAC()), 5000);
-  } else {
-    dispatch(setMasageAC(error));
+    if (response.ok) {
+      dispatch(tasksAC(allTasks));
+      dispatch(setMasageAC('You have created a new task'));
+      setTimeout(() => dispatch(deleteMasageAC()), 5000);
+    } else {
+      dispatch(setMasageAC(error));
+      setTimeout(() => dispatch(deleteMasageAC()), 5000);
+    }
+  } catch (error) {
+    dispatch(
+      setMasageAC('Text is too long. Text must not exceed 255 characters.'),
+    );
     setTimeout(() => dispatch(deleteMasageAC()), 5000);
   }
 };
@@ -49,7 +56,7 @@ export const taskStatusFetch = (allTasks, id) => async (dispatch) => {
 
   if (response.ok) {
     const copyTasks = JSON.parse(JSON.stringify(allTasks));
-    copyTasks.forEach((el) => (el.id === id ? el.status = !el.status : el));
+    copyTasks.forEach((el) => (el.id === id ? (el.status = !el.status) : el));
     dispatch(tasksAC(copyTasks));
     dispatch(deleteMasageAC());
   } else {
@@ -58,33 +65,35 @@ export const taskStatusFetch = (allTasks, id) => async (dispatch) => {
   }
 };
 
-export const editedTaskFetch = (allTasks, id, { description }) => async (dispatch) => {
-  const response = await fetch(endPoints.editTask(), {
-    method: 'put',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    credentials: 'include',
+export const editedTaskFetch =
+  (allTasks, id, { description }) =>
+  async (dispatch) => {
+    const response = await fetch(endPoints.editTask(), {
+      method: 'put',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      credentials: 'include',
 
-    body: JSON.stringify({ id, description })
-  });
-
-  if (response.ok) {
-    const copyTasks = JSON.parse(JSON.stringify(allTasks));
-    copyTasks.forEach((el) => {
-      if (el.id === id) {
-        el.description = description;
-        el.chnged = true;
-      }
+      body: JSON.stringify({ id, description }),
     });
-    dispatch(tasksAC(copyTasks));
-    dispatch(setMasageAC('Task changed!'));
-    setTimeout(() => dispatch(deleteMasageAC()), 5000);
-  } else {
-    dispatch(setMasageAC('Your are not logged in!'));
-    setTimeout(() => dispatch(deleteMasageAC()), 5000);
-  }
-};
+
+    if (response.ok) {
+      const copyTasks = JSON.parse(JSON.stringify(allTasks));
+      copyTasks.forEach((el) => {
+        if (el.id === id) {
+          el.description = description;
+          el.chnged = true;
+        }
+      });
+      dispatch(tasksAC(copyTasks));
+      dispatch(setMasageAC('Task changed!'));
+      setTimeout(() => dispatch(deleteMasageAC()), 5000);
+    } else {
+      dispatch(setMasageAC('Your are not logged in!'));
+      setTimeout(() => dispatch(deleteMasageAC()), 5000);
+    }
+  };
 
 export const deleteTaskFetch = (id) => async (dispatch) => {
   const response = await fetch(endPoints.taskDelete(id), {

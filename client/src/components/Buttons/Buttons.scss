@@ -1,0 +1,17 @@
+.buttons {
+  display: flex;
+  align-items: center; 
+  title {
+    margin-left: 5%;
+    display: block;
+    font-weight: bolder;
+    color: white;
+  }
+  button {
+    margin-left: 2%;
+    height: 35px;
+  }
+  button:focus {
+    background-color: #341b61;
+  }
+}

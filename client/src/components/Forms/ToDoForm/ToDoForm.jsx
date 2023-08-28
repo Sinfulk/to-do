@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { taskFetch } from '../../../redux/actions/tasksAction';
-import styles from './ToDoForm.module.scss';
-
+import  '../forms.scss'
+import massageIcon from '../../../image/message.svg'
 function ToDoForm({ setActive }) {
   const dispatch = useDispatch();
   const
@@ -21,26 +21,30 @@ function ToDoForm({ setActive }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.toDoForm}>
-
-      <div className={styles.input}>
-        <label className={styles.label}>User name</label>
+    <form className='heroForm' onSubmit={handleSubmit(onSubmit)} >
+        <h1>Describe the task</h1>
+      <div className='field'>
+        <img src={massageIcon} alt="иконка темы" className="icon" />
+        <label htmlFor='userName' >User name</label>
         <input
-          placeholder="Name"
+          id='userName'
+          placeholder="Enter Name"
           {...register('userName', {
             required: 'Name is require field!'
           })}
         />
-        <div className={styles.masage}>
+        <div className='field'>
           {errors?.userName && <p>{errors?.userName?.message}</p>}
         </div>
       </div>
 
-      <div className={styles.input}>
-        <label className={styles.label}>User email</label>
+      <div className='field'>
+         <img src={massageIcon} alt="иконка почты" className="icon" />
+        <label htmlFor='taskEmail' >E-mail</label>
         <input
+          id='taskEmail'
           type="email"
-          placeholder="user@user.com"
+          placeholder="Enter E-mail"
           {...register('userEmail', {
             required: 'Email is require field!',
             pattern: {
@@ -49,25 +53,25 @@ function ToDoForm({ setActive }) {
             }
           })}
         />
-        <div className={styles.masage}>
+        <div className='field'>
           {errors?.userEmail && <p>{errors?.userEmail?.message}</p>}
         </div>
       </div>
 
-      <div className={styles.input}>
-        <label className={styles.label}>Description</label>
+      <div className='field'>
+        <label htmlFor='description' >Description</label>
         <textarea
-          placeholder="Text ..."
+          id='description'
           {...register('description', {
             required: 'description is require field!'
           })}
         />
-        <div className={styles.masage}>
+        <div className='field'>
           {errors?.description && <p>{errors?.description?.message}</p>}
         </div>
       </div>
 
-      <button type="submit" className={styles.button}>
+      <button type="submit">
         Create
       </button>
     </form>

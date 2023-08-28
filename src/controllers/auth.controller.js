@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt')
-const { User,} = require('../../db/models');
+const bcrypt = require('bcrypt');
+const { User } = require('../../db/models');
 
 const signUp = async (req, res) => {
   const { playerName, password } = req.body;
@@ -38,7 +38,10 @@ const signIn = async (req, res) => {
   if (password && name) {
     try {
       const currentUser = await User.findOne({ where: { name } });
-      if (currentUser && await bcrypt.compare(password, currentUser.password)) {
+      if (
+        currentUser &&
+        (await bcrypt.compare(password, currentUser.password))
+      ) {
         req.session.user = {
           id: currentUser.id,
           name: currentUser.name,
@@ -73,7 +76,8 @@ const checkAuth = async (req, res) => {
   try {
     const user = await User.findByPk(req.session.user.id);
     return res.json({
-      id: user.id, name: user.name,
+      id: user.id,
+      name: user.name,
     });
   } catch (error) {
     console.error(error);

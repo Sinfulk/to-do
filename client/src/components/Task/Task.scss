@@ -1,0 +1,80 @@
+.taskCard {
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 28px;
+  border-radius: 10px;
+  color: #fafafa;
+
+  .userTaskCard {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    .userCard {
+      display: flex;
+      justify-content: center;
+    }
+    .adminInfo,
+    .userInfo {
+      display: flex;
+      margin-left: 5%;
+      .labelInfo {
+        margin-left: 5%;
+        color: #fafafa;
+      }
+    }
+    .label {
+      color: #afb2bf;
+      font-size: 19px;
+      font-weight: 400;
+      line-height: 120%;
+    }
+    .adminInfo {
+      margin-left: 0;
+      .label {
+        color: #6c38cc;
+      }
+      .labelInfo {
+        margin-left: 2%;
+      }
+    }
+    .taskCard {
+      display: flex;
+      .label {
+        display: flex;
+      }
+      p {
+        margin: 0;
+        margin-left: 5%;
+        width: 400px;
+        word-wrap: break-word;
+        overflow: auto;
+      }
+      button {
+        margin-left: 2%;
+        height: 35px;
+      }
+    }
+  }
+  textarea,
+  .userInfoTask {
+    padding: 27px 48px 12px;
+    color: #fafafa;
+    background-color: #1e1f29;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+    font-family: sans-serif;
+    border: none;
+    border-radius: 10px;
+  }
+  textarea {
+    width: 400px;
+  }
+  .check {
+    color: #6c38cc;
+    font-size: 22px;
+  }
+}
+

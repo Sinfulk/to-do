@@ -3,12 +3,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import logoImag from '../assets/img/logo.svg';
-import styles from './Navbar.module.scss';
 import SigIn from '../Forms/SigIn/SigIn';
 import Modal from '../Modal/Modal';
 import { signOut } from '../../redux/actions/userAction';
 import ToDoForm from '../Forms/ToDoForm/ToDoForm';
-
+import './Navbar.scss'
 function Navbar() {
   const [sigInActive, setSigInActive] = useState(false);
   const [toDoFormActive, setToDoFormActive] = useState(false);
@@ -23,15 +22,13 @@ function Navbar() {
 
   return (
     <>
-      <div className={styles.navbar}>
-        <div className={styles.logo}>
+      <header>
+        <div className='label' >
           <Link to="/"><img src={logoImag} alt="" height="50" /></Link>
         </div>
         <button type="button" className="" onClick={() => setToDoFormActive(true)}>
           New Task
         </button>
-        <div className={styles.wrapper}>
-          <div className={styles.menu}>
             {user.id ? (
               <button type="button" className="text-white animation" onClick={clickHandler}>
                 SignOut
@@ -41,9 +38,7 @@ function Navbar() {
                 SignIn
               </button>
             )}
-          </div>
-        </div>
-      </div>
+      </header>
       <Modal active={sigInActive} setActive={setSigInActive}>
         <SigIn setActive={setSigInActive} />
       </Modal>

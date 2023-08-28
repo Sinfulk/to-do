@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { signIn } from '../../../redux/actions/userAction';
-import styles from './SignIn.module.scss';
-
+import massageIcon from '../../../image/topic.svg'
+import  '../forms.scss'
 function SigIn({ setActive }) {
   const dispatch = useDispatch();
   const
@@ -22,31 +22,38 @@ function SigIn({ setActive }) {
 
   return (
 
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.signIn}>
-      <div className={styles.input}>
+    <form className='heroForm'onSubmit={handleSubmit(onSubmit)} >
+      <h1>Your name and password</h1>
+      <div className='field'>
+        <img src={massageIcon} alt="иконка темы" className="icon" />
+        <label htmlFor='sigInName'>Name</label>
         <input
-          placeholder="Name"
+          id='sigInName'
+          placeholder="Enter Name"
           {...register('name', {
-            required: 'Field must be filled!'
+            required: 'Name is require field!'
           })}
         />
-        <div className={styles.masage}>
+        <div className='field'>
           {errors?.name && <p>{errors?.name?.message}</p>}
         </div>
       </div>
-      <div className={styles.input}>
+      <div className='field'>
+        <img src={massageIcon} alt="иконка темы" className="icon" />
+        <label htmlFor='SigInPassword'>Pasword</label>
         <input
-          placeholder="Password"
+          id='SigInPassword'
+          placeholder="Enter password"
           type="password"
           {...register('password', {
-            required: 'Field must be filled!'
+            required: 'Password is require field!'
           })}
         />
-        <div className={styles.masage}>
+        <div className='field'>
           {errors?.password && <p>{errors?.password?.message}</p>}
         </div>
       </div>
-      <button type="submit" className={styles.button}>
+      <button type="submit">
         sign in
       </button>
     </form>

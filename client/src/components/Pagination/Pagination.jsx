@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Paginaton.module.scss';
+import  './Paginaton.scss';
 
 function Pagination({ tasksPerPage, totalTasks, paginate }) {
   const pageNumbers = [];
@@ -10,10 +10,10 @@ function Pagination({ tasksPerPage, totalTasks, paginate }) {
 
   return (
     <div>
-      <ul className={styles.pagination}>
+      <ul className="pagination">
         {
           pageNumbers.map((number) => (
-            <li className={styles.pageItem} key={number}>
+            <li className="pageItem" key={number}>
               <button type="button" onClick={() => paginate(number)}>
                 {number}
               </button>

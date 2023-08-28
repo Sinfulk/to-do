@@ -1,12 +1,13 @@
 .tasksList {
   display: flex;
   flex-direction: column;
-  width: 450px;
-  background-color: rgb(50, 49, 49);
-  border-radius: 8px;
-  margin: 1%;
+  margin-top: 1%;
+  background-color: #2e2d3d;
+  border-radius: 10px;
+  min-width: 300px;
 
   .masage {
+    margin-top: 5%;
     justify-content: center;
     color: rgb(18, 179, 0);
     text-align: center;

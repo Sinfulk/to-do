@@ -4,7 +4,7 @@ import { allTasksFetch } from '../../redux/actions/tasksAction';
 import Buttons from '../Buttons/Buttons';
 import Pagination from '../Pagination/Pagination';
 import Task from '../Task/Task';
-import styles from './TasksLitst.module.scss';
+import styles from './TasksLitst.scss';
 
 function TasksList() {
   const masage = useSelector((store) => store.masage);
@@ -25,8 +25,8 @@ function TasksList() {
   }, []);
 
   return (
-    <div className={styles.tasksList}>
-      <div className={styles.masage}>{masage}</div>
+    <div className="tasksList">
+      <div className="masage">{masage}</div>
       <Buttons />
       {(allTasks) ? (
         currentTask.map((el) => (
@@ -58,3 +58,5 @@ function TasksList() {
 }
 
 export default TasksList;
+
+

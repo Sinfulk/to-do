@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { BsTrash } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { deleteTaskFetch, editedTaskFetch, taskStatusFetch } from '../../redux/actions/tasksAction';
 import Check from '../Check/Check';
-import styles from './Task.module.scss';
+import  './Task.scss';
 
 function Task({
   taskId,
@@ -42,53 +41,64 @@ function Task({
   }
 
   return (
-    <div className={styles.taskCard}>
-      <div className={styles.buttons}>
-        <button type="button" className={`${styles.check} ${status ? styles.background : ''}`} onClick={taskStatusHandle}>
-          <Check status={status} />
-        </button>
-        <button type="button" className={styles.bsTrash} onClick={deleteHandle}>
-          <BsTrash />
-        </button>
-      </div>
-      <div className={styles.info}>
-        <div className={styles.userInfo}>
-          <div className={styles.title}> Name: </div>
-          <div className={styles.infoUser}>{userName}</div>
-        </div>
-        <div className={styles.userInfo}>
-          <div className={styles.title}> Email: </div>
-          <div className={styles.infoUser}>{userEmail}</div>
-        </div>
-        {chnged
-        && (
-          <div className={styles.userInfo}>
-            <div className={styles.title}> Edited: </div>
-            <div className={styles.infoUser}>admin</div>
+    <div className="taskCard">
+      
+
+      <section className="userTaskCard">
+        
+        {chnged&& (
+          <div className="adminInfo">
+            <div className="label"> Edited: </div>
+            <div className="labelInfo">admin</div>
           </div>
         )}
-        <div className={styles.userInfo}>
-          <div className={styles.title}> Task: </div>
+
+       
+        <div className="userInfoTask">
+        <div className='userCard'>
+          <div className="userInfo">
+            <div className="label"> Name: </div>
+            <div className="labelInfo">{userName}</div>
+          </div>
+          <div className="userInfo">
+            <div className="label"> Email: </div>
+            <div className="labelInfo">{userEmail}</div>
+          </div>
+        </div>
+        <div className='taskCard'>
+          <div className="label"> 
+          <div>Task: </div>
+          <div className="check"><Check status={status}/></div>
+          </div>
           {user.id ? (
-            <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+            <form onSubmit={handleSubmit(onSubmit)} className="form">
               <textarea
+                id='descriptionTask'
                 placeholder="Text ..."
                 {...register('description', {
-                  required: 'description is require field'
+                  required: 'description is a require field'
                 })}
               />
               <div>
                 {errors?.password && <p>{errors?.password?.message}</p>}
               </div>
-              <button type="submit" className={styles.button}>
+              <button type="submit" className="button">
                 Edit
               </button>
+                <button type="button" onClick={taskStatusHandle} >
+                {status ? "Undo" : "Completed"}
+               </button>
+                <button type="button" onClick={deleteHandle}>
+                 Delete
+                </button>  
             </form>
+            
           ) : (
-            <p className={styles.infoUser}>{description}</p>
+            <p className="infoUser">{description}</p>
           )}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

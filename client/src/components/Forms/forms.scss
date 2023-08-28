@@ -1,0 +1,63 @@
+.heroForm {
+  background-color: #1e1f29;
+  padding: 28px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin: 0 0 32px 0;
+    text-align: center;
+    color: #fafafa;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 120%;
+  }
+  label {
+    position: absolute;
+    top: 12px;
+    left: 48px;
+    color: #afb2bf;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 120%;
+  }
+  input,
+  textarea {
+    padding: 27px 48px 12px;
+    width: 400px;
+    color: #fafafa;
+    background-color: #2e2d3d;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+    font-family: sans-serif;
+    border: none;
+    border-radius: 10px;
+  }
+  p {
+    color: red;
+  }
+  button {
+    width: 600px;
+    height: 58px;
+  }
+  .field {
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .icon {
+    position: absolute;
+    top: 17px;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: #787983;
+    font-size: 16px;
+  }
+}
